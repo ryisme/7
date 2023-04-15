@@ -76,7 +76,7 @@ class Aimbot:
             print(colored("[!] CUDA ACCELERATION IS UNAVAILABLE", "red"))
             print(colored("[!] Check your PyTorch installation, else performance will be poor", "red"))
 
-        self.model.conf = 0.5  # base confidence threshold (or base detection (0-1)
+        self.model.conf = 0.51  # base confidence threshold (or base detection (0-1)
         self.model.iou = 0.5  # NMS IoU (0-1)
         self.collect_data = collect_data
         self.mouse_delay = mouse_delay
@@ -112,7 +112,7 @@ class Aimbot:
 
     def is_target_locked(x, y):
         # plus/minus 5 pixel threshold
-        threshold = 4.1
+        threshold = 4
         return True if 960 - threshold <= x <= 960 + threshold and 540 - threshold <= y <= 540 + threshold else False
 
     def move_crosshair(self, x, y):
@@ -171,8 +171,8 @@ class Aimbot:
                     x1, y1, x2, y2, conf = *x1y1, *x2y2, conf.item()
                     height = y2 - y1
                     relative_head_X, relative_head_Y = int((x1 + x2) / 2), int((
-                                                                                           y1 + y2) / 2 - height / 17)  # offset to roughly approximate the head using a ratio of the height
-                    own_player = x1 < 10.1 or (
+                                                                                           y1 + y2) / 2 - height / 19)  # offset to roughly approximate the head using a ratio of the height
+                    own_player = x1 < 10 or (
                                 x1 < self.box_constant / 20 and y2 > self.box_constant / 1.9)  # helps ensure that your own player is not regarded as a valid detection
 
                     # calculate the distance between each detection and the crosshair at (self.box_constant/2, self.box_constant/2)
